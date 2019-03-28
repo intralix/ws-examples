@@ -1,0 +1,13 @@
+{
+    "name": "lgps/testing",
+    "description": "Lgps WsClient",
+    "authors": [
+        {
+            "name": "Intralix",
+            "email": "sistemas@intralix.com"
+        }
+    ],
+    "require": {
+    	"guzzlehttp/guzzle": "~6.0"
+    }
+}
