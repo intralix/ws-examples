@@ -40,6 +40,8 @@ class LgpsWsClient
     protected $client;
     /* Configuration **/
     protected $config;
+    /* Parameters **/
+    protected $params;
 
     /**
      * Class Constructor
@@ -47,10 +49,11 @@ class LgpsWsClient
      * @return void
      * @author Lgps
      **/   
-    public function __construct( $config )
+    public function __construct( $config, $params = [] )
     {
         $this->config = $config;
         $this->client = new Client([]);
+        $this->params = $params;
     }  
 
     /**
@@ -74,7 +77,7 @@ class LgpsWsClient
             // Call Webservice
             $response = $this->client->request('POST', $this->config['endpoints']['last_positions'], [
                 'headers' => $headers,
-                'json' => [ ] //Post Parameters if there are
+                'json' => $this->params // Post Parameters if there are
             ]);
            
            // echo 'WS Http Code.<hr>'; var_dump($response->getStatusCode());

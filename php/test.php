@@ -29,17 +29,25 @@
 	require 'vendor/autoload.php';
 	require 'LgpsWsClient.php';
 
+	$url = 'http://signals.intralix.com/api/v1/lgps/.....'; // Change URL as need
 	// Process
 	$config = [
 		'endpoints' => [
-			'last_positions' => 'http://ws.intralix.com/api/v1/lgps/w/lastposition',
+			'last_positions' => $url,
 		],
 
 		'bearer_token' => 'API_TOKEN', // Token proporcionado en el documento
 	];
 
+	$params =  [
+		/*
+		'param 1' => 'value 1',
+		'param 2' => 'value 2',
+		*/
+	];
+
 	// Execute Ws Call
-	$wsc = new LgpsWsClient( $config );
+	$wsc = new LgpsWsClient( $config, $params );
 	$response = $wsc->getLastPositions();
 
 	// Has error ?

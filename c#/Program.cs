@@ -11,8 +11,8 @@ namespace LGPS_Ws_Client
         static void Main(string[] args)
         {
             // Config Url depends of Documentation
-            var base_url = "http://ws.intralix.com";  
-            var uri = "/api/v1/lgps/...";  
+            var base_url = "http://signals.intralix.com";  
+            var uri = "/api/v1/lgps/..."; // Change URL as need  
             var api_token = "API_TOKEN"; // Provided Token
 
             // HTTP POST Configuration
@@ -22,7 +22,7 @@ namespace LGPS_Ws_Client
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", api_token);                
             
             // Body Configuration
-            var data = "{\"client_id\":\"00377\"}"; // Ws Parameters (depends on documentation)
+            var data = "{\"client_id\":\"CLIENT_ID\"}"; // Ws Parameters (depends on documentation)
             var contentRes = new StringContent(data.ToString(), Encoding.UTF8, "application/json");
             
             // Request data
