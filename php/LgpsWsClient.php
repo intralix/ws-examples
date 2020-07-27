@@ -3,7 +3,7 @@
 * Author: 		Intralix - http://intralix.com/
 * Description:	Example for Consume Las Positions Webservice
 * Date: 		27/03/2019
-* License:		
+* License:
 ############################################################################
 #    Coded by: Intralix (https://github.com/intralix)
 ############################################################################
@@ -48,13 +48,13 @@ class LgpsWsClient
      *
      * @return void
      * @author Lgps
-     **/   
+     **/
     public function __construct( $config, $params = [] )
     {
         $this->config = $config;
         $this->client = new Client([]);
         $this->params = $params;
-    }  
+    }
 
     /**
      * Returns Last Positions from Webservice
@@ -63,35 +63,41 @@ class LgpsWsClient
      * @author Lgps
      **/
     public function getLastPositions()
-    {                               
-        $response = [];       
+    {
+        $response = [];
 
         try {
             // Http Headers
             $headers = [
                 'Accept' => 'application/json',
                 'Content-type' => 'application/json',
+                'User-Agent' => 'WsTool/v1.0',
                 'Authorization' =>  'Bearer '.$this->config['bearer_token'],
-               
             ];
-            // Call Webservice
-            $response = $this->client->request('POST', $this->config['endpoints']['last_positions'], [
+
+            // Http request params
+            $options = [
                 'headers' => $headers,
-                'json' => $this->params // Post Parameters if there are
-            ]);
-           
+                'json' => $this->params,
+                'referer' => true,
+                //'debug' => true,
+            ];
+
+            // Call Webservice
+            $response = $this->client->request('POST', $this->config['endpoints']['last_positions'], $options);
+
            // echo 'WS Http Code.<hr>'; var_dump($response->getStatusCode());
 
-            $response = json_decode($response->getBody(), true); // Response as Array           
+            $response = json_decode($response->getBody(), true); // Response as Array
             // $response = json_decode($response->getBody()); // Response as Object
             $response = ($response !== null) ? $response : [];
-    
-        } catch (Exception $e) {                               
-           
+
+        } catch (Exception $e) {
+
             $response = ['error' => $e->getMessage()];
-        }          
-             
-        return $response;                               
+        }
+
+        return $response;
     }
 
 }

@@ -3,7 +3,7 @@
 * Author: 		Intralix - http://intralix.com/
 * Description:	Example for Consume Las Positions Webservice
 * Date: 		27/03/2019
-* License:		
+* License:
 ############################################################################
 #    Coded by: Intralix (https://github.com/intralix)
 ############################################################################
@@ -25,6 +25,7 @@
 */
 
 	error_reporting(E_ALL); ini_set("display_errors", 1);
+	echo '<pre>';
 
 	require 'vendor/autoload.php';
 	require 'LgpsWsClient.php';
@@ -56,18 +57,17 @@
 		// Has Data ?
 		if(isset($response['data']))
 		{
-			echo '<pre>';
 			// Print Results
-			foreach ($response['data'] as $position) {			
+			foreach ($response['data'] as $position) {
 				var_dump($position);
-			}					
-			echo '</pre>';
-		}		
-	} 
+			}
+		}
+	}
 	else {
-		
-		echo '<pre>'; var_dump($response); echo '</pre>';
+
+		var_dump($response);
 	}
 
 	echo '<hr>...Done';
+	echo '</pre>';
 ?>

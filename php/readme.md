@@ -1,6 +1,6 @@
 # Instructions
 
-You need to use composer to install dependencies: 
+You need to use composer to install dependencies:
 
 ### Composer for windows
 
